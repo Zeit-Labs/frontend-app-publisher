@@ -283,8 +283,8 @@ export class BaseEditCourseForm extends React.Component {
       runTypeModes,
     } = parsedTypeOptions;
     const disabled = courseInReview || !editable;
-    const showMarketingFields = !currentFormValues.type || !courseTypes[currentFormValues.type]
-      || courseTypes[currentFormValues.type].course_run_types.some((crt) => crt.is_marketable);
+    const showMarketingFields = (currentFormValues.type && courseTypes[currentFormValues.type]) === undefined ? false
+      : courseTypes[currentFormValues.type].course_run_types.some((crt) => crt.is_marketable);
 
     const courseIsPristine = isPristine(initialValues, currentFormValues);
     const publishedContentChanged = initialValues.course_runs
